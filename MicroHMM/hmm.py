@@ -130,7 +130,7 @@ class HMMModel(object):
 
         self.state_obsevation_pair[tag][word] = self.state_obsevation_pair[tag][word] + 1
 
-    def save_model(self, model_dir="model", protocol='pickle'):
+    def save_model(self, model_dir="model"):
         model_dir_path = pathlib.Path(model_dir)
 
         self._save_data(self.A, model_dir_path / 'A.json')
