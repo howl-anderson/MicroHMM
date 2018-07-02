@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import json
+import pickle
 import pathlib
 
 from MicroHMM.viterbi import Viterbi
 
 
 class HMMModel(object):
-    # used for save model
-    PICKLE_FORMAT = 'pickle'
-    JSON_FORMAT = 'json'
-
     # built-in constant
     START_STATE = '<start>'
     END_STATE = '<end>'
@@ -79,7 +75,7 @@ class HMMModel(object):
 
         self.state_count[tag] = tag_state_count + 1
 
-    def _do_train(self):
+    def do_train(self):
         for previous_state, previous_state_count in self.state_count.items():
             # compute transition probability
 
@@ -106,7 +102,7 @@ class HMMModel(object):
 
     def predict(self, word_list, output_graphml_file=None):
         if not self.A:  # using self.A as an training-flag indicate if already trained.
-            self._do_train()
+            self.do_train()
 
         viterbi = Viterbi(self.A, self.B, self.vocabulary)
         state_list = viterbi.predict_state(word_list)
@@ -133,28 +129,28 @@ class HMMModel(object):
     def save_model(self, model_dir="model"):
         model_dir_path = pathlib.Path(model_dir)
 
-        self._save_data(self.A, model_dir_path / 'A.json')
-        self._save_data(self.B, model_dir_path / 'B.json')
-        self._save_data(self.vocabulary, model_dir_path / 'vocabulary.json')
+        self._save_data(self.A, model_dir_path / 'A.pickle')
+        self._save_data(self.B, model_dir_path / 'B.pickle')
+        self._save_data(self.vocabulary, model_dir_path / 'vocabulary.pickle')
 
     def _save_data(self, obj, output_file):
-        with open(output_file) as fd:
-            json.dump(obj, fd)
+        with output_file.open('wb') as fd:
+            pickle.dump(obj, fd)
 
     @classmethod
     def load_model(cls, model_dir="model"):
         model_dir_path = pathlib.Path(model_dir)
 
-        A = cls._load_data(model_dir_path / 'A.json')
-        B = cls._load_data(model_dir_path / 'B.json')
-        vocabulary = cls._load_data(model_dir_path / 'vocabulary.json')
+        A = cls._load_data(model_dir_path / 'A.pickle')
+        B = cls._load_data(model_dir_path / 'B.pickle')
+        vocabulary = cls._load_data(model_dir_path / 'vocabulary.pickle')
 
         return cls(A, B, vocabulary)
 
     @staticmethod
     def _load_data(input_file):
-        with open(input_file) as fd:
-            obj = json.load(fd)
+        with input_file.open('rb') as fd:
+            obj = pickle.load(fd)
             return obj
 
 
