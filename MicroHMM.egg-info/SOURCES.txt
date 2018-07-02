@@ -1,7 +1,0 @@
-MicroHMM/__init__.py
-MicroHMM/hmm.py
-MicroHMM/viterbi.py
-MicroHMM.egg-info/PKG-INFO
-MicroHMM.egg-info/SOURCES.txt
-MicroHMM.egg-info/dependency_links.txt
-MicroHMM.egg-info/top_level.txt
