@@ -21,7 +21,7 @@ class Viterbi(object):
         N = len(word_list)
         T = N - 1
         trackback = {}
-        average_emission_probability = 1 / len(self.vocabulary)
+        average_emission_probability = 1 / len(self.vocabulary) / 10000
 
         all_states = self.A.keys() - {self.start_state}  # remove start_state
 
