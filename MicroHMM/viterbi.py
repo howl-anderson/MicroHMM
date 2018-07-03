@@ -21,7 +21,7 @@ class Viterbi(object):
         N = len(word_list)
         T = N - 1
         trackback = {}
-        average_emission_probability = 1 / len(self.vocabulary) / 10000
+        average_emission_probability = 1 / len(self.vocabulary)
 
         all_states = self.A.keys() - {self.start_state}  # remove start_state
 
@@ -30,8 +30,9 @@ class Viterbi(object):
 
         word = word_list[0]
         for state in all_states:
-            # if the word is OOV, give it a default emission probability
-            default_word_emission = 0 if word in self.vocabulary else average_emission_probability
+            # if the word is OOV, give it a default emission probability, using a very small number
+            # FIXME: why using a very small number than average_emission_probability can archive better performance?
+            default_word_emission = 0 if word in self.vocabulary else average_emission_probability / 10000
 
             self.trellis[state] = {}
 
