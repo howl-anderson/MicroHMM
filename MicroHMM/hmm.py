@@ -155,8 +155,8 @@ class HMMModel(object):
 
 
 if __name__ == "__main__":
-    hmm_tagger = HMMModel()
-    hmm_tagger.train_one_line([("我", "A"), ("是", "B"), ("中国人", "C")])
-    hmm_tagger.train_one_line([("你", "A"), ("打", "B"), ("人", "C")])
-    result = hmm_tagger.predict(["你", "打", "人"])
+    hmm_model = HMMModel()
+    hmm_model.train_one_line([("我", "A"), ("是", "B"), ("中国人", "C")])
+    hmm_model.train_one_line([("你", "A"), ("去", "B"), ("上海", "C")])
+    result = hmm_model.predict(["你", "去", "上海"])
     print(result)
