@@ -20,7 +20,7 @@ class HMMModel(object):
         # used only for training, temporary variable
         self.state_count = {}  # count of each state
         self.state_bigram = {}  # count of (State_{t} | State_{t-1})
-        self.state_obsevation_pair = {}  # count of pair state and emission observation
+        self.state_observation_pair = {}  # count of pair state and emission observation
 
     def train_one_line(self, list_of_word_tag_pair):
         """
@@ -93,7 +93,7 @@ class HMMModel(object):
 
             # compute emission probability
             # NOTE: using dict.get() to prevent start state have on emission will cause exeception
-            emission_local_storage = self.state_obsevation_pair.get(previous_state, {})
+            emission_local_storage = self.state_observation_pair.get(previous_state, {})
             for word, word_count in emission_local_storage.items():
                 if previous_state not in self.B:
                     self.B[previous_state] = {}
@@ -118,13 +118,13 @@ class HMMModel(object):
         return list(word_tag_pair)
 
     def _state_observation_pair_increase_one(self, tag, word):
-        if tag not in self.state_obsevation_pair:
-            self.state_obsevation_pair[tag] = {}
+        if tag not in self.state_observation_pair:
+            self.state_observation_pair[tag] = {}
 
-        if word not in self.state_obsevation_pair[tag]:
-            self.state_obsevation_pair[tag][word] = 0
+        if word not in self.state_observation_pair[tag]:
+            self.state_observation_pair[tag][word] = 0
 
-        self.state_obsevation_pair[tag][word] = self.state_obsevation_pair[tag][word] + 1
+        self.state_observation_pair[tag][word] = self.state_observation_pair[tag][word] + 1
 
     def save_model(self, model_dir="model"):
         model_dir_path = pathlib.Path(model_dir)
