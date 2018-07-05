@@ -1,11 +1,11 @@
 # MicroHMM
 
-一个微型的基于Python 的 HMM (隐马尔可夫模型) 包.
+A micro python package for HMM (Hidden Markov Model).
 
-## Python 版本
-为了使用 `math.inf`，这个软件包要求 python >= 3.5
+## Python version
+python >= 3.5 for using `math.inf`
 
-## 使用
+## Usage
 ```python
 from MicroHMM.hmm import HMMModel
 
@@ -22,7 +22,7 @@ result = hmm_model.predict(["你", "去", "上海"])
 print(result)
 ```
 
-## 在线演示
+## Online demo
 **TODO**
 
 ## Reference
