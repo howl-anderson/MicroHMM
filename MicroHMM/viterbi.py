@@ -4,7 +4,7 @@ import networkx as nx
 
 
 class Viterbi(object):
-    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>'):
+    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e10-32):
         self.A = A
         self.B = B
         self.vocabulary = vocabulary
@@ -14,6 +14,10 @@ class Viterbi(object):
 
         self.trellis = {}
 
+        # Trk part for robust model
+        # TODO: why using a very small number than average_emission_probability can archive better performance?
+        self.very_small_probability = very_small_probability
+
         # create networkx graph
         self.G = nx.Graph()
 
@@ -21,7 +25,6 @@ class Viterbi(object):
         N = len(word_list)
         T = N - 1
         trackback = {}
-        average_emission_probability = 1 / len(self.vocabulary)
 
         all_states = self.A.keys() - {self.start_state}  # remove start_state
 
@@ -30,9 +33,6 @@ class Viterbi(object):
 
         word = word_list[0]
         for state in all_states:
-            # if the word is OOV, give it a default emission probability, using a very small number
-            # FIXME: why using a very small number than average_emission_probability can archive better performance?
-            default_word_emission = 0 if word in self.vocabulary else average_emission_probability / 10000
 
             self.trellis[state] = {}
 
@@ -43,12 +43,12 @@ class Viterbi(object):
 
             # using log(probability) as probability to prevent number to be too small
             transition_probability = math.log(
-                self.A[self.start_state].get(state, 0)
-            ) if self.A[self.start_state].get(state, 0) else - math.inf
+                self.A[self.start_state].get(state, self.very_small_probability)
+            )
 
             state_observation_likelihood = math.log(
-                self.B[state].get(word, default_word_emission)
-            ) if self.B[state].get(word, default_word_emission) else - math.inf
+                self.B[state].get(word, self.very_small_probability)
+            )
 
             path_probability = transition_probability + state_observation_likelihood
 
@@ -80,9 +80,6 @@ class Viterbi(object):
                     if state in ("ns", "ud") and i == "wky" and word == "圣马力诺" and step > 5:
                         print("")
 
-                    # if the word is OOV, give it a default emission probability
-                    default_word_emission = 0 if word in self.vocabulary else average_emission_probability
-
                     previous_path_probability = self.trellis[i][step - 1]
 
                     # NOTE: this is original probability compute algorithms, replaced by follow one
@@ -93,12 +90,12 @@ class Viterbi(object):
 
                     # using log(probability) as probability to prevent number to be too small
                     transition_probability = math.log(
-                        self.A[i].get(state, 0)
-                    ) if self.A[i].get(state, 0) else - math.inf
+                        self.A[i].get(state, self.very_small_probability)
+                    )
 
                     state_observation_likelihood = math.log(
-                        self.B[state].get(word, default_word_emission)
-                    ) if self.B[state].get(word, default_word_emission) else - math.inf
+                        self.B[state].get(word, self.very_small_probability)
+                    )
 
                     path_probability = previous_path_probability + transition_probability + state_observation_likelihood
 
@@ -143,8 +140,8 @@ class Viterbi(object):
 
             # using log(probability) as probability to prevent number to be too small
             transition_probability = math.log(
-                self.A[i].get(self.end_state, 0)
-            ) if self.A[i].get(self.end_state, 0) else - math.inf
+                self.A[i].get(self.end_state, self.very_small_probability)
+            )
 
             path_probability = previous_path_probability + transition_probability
 
