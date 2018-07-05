@@ -16,18 +16,18 @@ hmm_model = HMMModel()
 
 # train model line by line
 # input format: list of (observation, hidden_state) pair
-hmm_model.train_one_line([("我", "A"), ("是", "B"), ("中国人", "C")])
-hmm_model.train_one_line([("你", "A"), ("去", "B"), ("上海", "C")])
+hmm_model.train_one_line([("我", "人称"), ("是", "动词"), ("中国人", "名词")])
+hmm_model.train_one_line([("你", "人称"), ("去", "动词"), ("上海", "名词")])
 
 # predict by line
 # input format: list of observation
-result = hmm_model.predict(["你", "去", "上海"])
+result = hmm_model.predict(["你", "是", "中国人"])
 print(result)
 ```
 
 输出：
 ```python
-[('你', 'A'), ('去', 'B'), ('上海', 'C')]
+[('你', '人称'), ('是', '动词'), ('中国人', '名词')]
 ```
 
 ## 在线演示
