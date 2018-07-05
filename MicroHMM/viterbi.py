@@ -76,9 +76,6 @@ class Viterbi(object):
                 # compute all previous path
                 candidate_list = []
                 for i in all_states:
-                    # For debug only
-                    if state in ("ns", "ud") and i == "wky" and word == "圣马力诺" and step > 5:
-                        print("")
 
                     previous_path_probability = self.trellis[i][step - 1]
 
