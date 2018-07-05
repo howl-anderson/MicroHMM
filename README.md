@@ -6,7 +6,7 @@
 一个微型的基于Python 的 HMM (隐马尔可夫模型) 包.
 
 ## Python 版本
-为了使用 `math.inf`，这个软件包要求 python >= 3.5
+只在 Python 3 下进行过测试
 
 ## 使用
 ```python

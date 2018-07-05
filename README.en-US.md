@@ -6,7 +6,7 @@
 A micro python package for HMM (Hidden Markov Model).
 
 ## Python version
-python >= 3.5 for using `math.inf`
+Only test by using Python3
 
 ## Usage
 ```python
