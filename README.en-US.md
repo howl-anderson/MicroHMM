@@ -1,3 +1,6 @@
+[中文版本的 README](README.md)
+------------------------------
+
 # MicroHMM
 
 A micro python package for HMM (Hidden Markov Model).
@@ -20,6 +23,11 @@ hmm_model.train_one_line([("你", "A"), ("去", "B"), ("上海", "C")])
 # input format: list of observation
 result = hmm_model.predict(["你", "去", "上海"])
 print(result)
+```
+
+Output:
+```python
+[('你', 'A'), ('去', 'B'), ('上海', 'C')]
 ```
 
 ## Online demo

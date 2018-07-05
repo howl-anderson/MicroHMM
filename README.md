@@ -1,3 +1,6 @@
+[README written in English](README.en-US.md)
+------------------------------
+
 # MicroHMM
 
 一个微型的基于Python 的 HMM (隐马尔可夫模型) 包.
@@ -20,6 +23,11 @@ hmm_model.train_one_line([("你", "A"), ("去", "B"), ("上海", "C")])
 # input format: list of observation
 result = hmm_model.predict(["你", "去", "上海"])
 print(result)
+```
+
+输出：
+```python
+[('你', 'A'), ('去', 'B'), ('上海', 'C')]
 ```
 
 ## 在线演示
