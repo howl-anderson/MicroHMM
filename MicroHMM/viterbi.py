@@ -4,7 +4,7 @@ import networkx as nx
 
 
 class Viterbi(object):
-    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e10-32):
+    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e-32):
         self.A = A
         self.B = B
         self.vocabulary = vocabulary
