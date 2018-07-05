@@ -31,7 +31,7 @@ print(result)
 ```
 
 ## 在线演示
-**TODO**
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/howl-anderson/MicroHMM/master?filepath=.notebooks%2Fdemo.ipynb)
 
 ## Reference
 [Speech and Language Processing > Hidden Markov Models](https://web.stanford.edu/~jurafsky/slp3/9.pdf)
