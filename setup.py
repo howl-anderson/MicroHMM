@@ -7,7 +7,7 @@ setup(
     name='MicroHMM',
     version='0.1',
     packages=['MicroHMM'],
-    url='',
+    url='https://github.com/howl-anderson/MicroHMM',
     install_requires=requirements,
     tests_require=test_requirements,
     license='MIT',
