@@ -8,6 +8,17 @@ A micro python package for HMM (Hidden Markov Model).
 ## Python version
 Only test by using Python3
 
+## Install
+### pip
+```bash
+pip install MicroHMM
+```
+
+### source
+```bash
+pip install git+https://github.com/howl-anderson/MicroHMM.git
+```
+
 ## Usage
 ```python
 from MicroHMM.hmm import HMMModel
@@ -32,5 +43,9 @@ Output:
 
 ## Online demo
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/howl-anderson/MicroHMM/master?filepath=.notebooks%2Fdemo.ipynb)
+
+## Used by
+* [MicroTokenizer: 一个微型中文分词引擎 | A micro tokenizer for Chinese](https://github.com/howl-anderson/MicroTokenizer)
+
 ## Reference
 [Speech and Language Processing > Hidden Markov Models](https://web.stanford.edu/~jurafsky/slp3/9.pdf)

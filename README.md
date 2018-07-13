@@ -8,6 +8,17 @@
 ## Python 版本
 只在 Python 3 下进行过测试
 
+## 安装
+### pip
+```bash
+pip install MicroHMM
+```
+
+### source
+```bash
+pip install git+https://github.com/howl-anderson/MicroHMM.git
+```
+
 ## 使用
 ```python
 from MicroHMM.hmm import HMMModel
@@ -32,6 +43,9 @@ print(result)
 
 ## 在线演示
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/howl-anderson/MicroHMM/master?filepath=.notebooks%2Fdemo.ipynb)
+
+## Used by
+* [MicroTokenizer: 一个微型中文分词引擎 | A micro tokenizer for Chinese](https://github.com/howl-anderson/MicroTokenizer)
 
 ## Reference
 [Speech and Language Processing > Hidden Markov Models](https://web.stanford.edu/~jurafsky/slp3/9.pdf)
