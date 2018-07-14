@@ -3,7 +3,7 @@
 
 # MicroHMM
 
-一个微型的基于Python 的 HMM (隐马尔可夫模型) 包.
+一个微型的基于 Python 的 HMM (隐马尔可夫模型) 包.
 
 ## Python 版本
 只在 Python 3 下进行过测试
