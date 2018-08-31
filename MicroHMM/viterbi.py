@@ -26,7 +26,7 @@ class Viterbi(object):
         T = N - 1
         trackback = {}
 
-        all_states = self.A.keys() - {self.start_state}  # remove start_state
+        all_states = set(self.A.keys()) - {self.start_state}  # remove start_state
 
         # initialization step
         self.G.add_node(self.start_state)
