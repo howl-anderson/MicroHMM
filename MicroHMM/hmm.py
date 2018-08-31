@@ -135,7 +135,8 @@ class HMMModel(object):
 
     def _save_data(self, obj, output_file):
         with output_file.open('wb') as fd:
-            pickle.dump(obj, fd)
+            # using protocol=2 to keep compatible with python 2
+            pickle.dump(obj, fd, protocol=2)
 
     @classmethod
     def load_model(cls, model_dir="model"):
