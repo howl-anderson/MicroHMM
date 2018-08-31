@@ -4,8 +4,8 @@
 from MicroHMM.hmm import HMMModel
 
 
-def test_save_model(tempdir):
-    model_dir = tempdir.mkdir("some_dir")
+def test_save_model(tmpdir):
+    model_dir = tmpdir.mkdir("some_dir")
     model_dir_str = str(model_dir)
 
     A = {}
