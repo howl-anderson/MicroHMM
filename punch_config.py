@@ -4,7 +4,7 @@ GLOBALS = {
     'serializer': '{{major}}.{{minor}}.{{patch}}',
 }
 
-FILES = ['MicroTokenizer/version.txt']
+FILES = ['setup.py']
 
 VERSION = ['major', 'minor', 'patch']
 
