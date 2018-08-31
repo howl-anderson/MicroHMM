@@ -1,6 +1,6 @@
 from setuptools import setup
 
-requirements = ['networkx==2.1']
+requirements = ['networkx==2.1', 'pathlib;python_version<"3.4"']
 test_requirements = ['pytest==3.5.1']
 
 setup(
