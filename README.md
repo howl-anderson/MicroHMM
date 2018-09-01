@@ -44,6 +44,10 @@ print(result)
 ## 在线演示
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/howl-anderson/MicroHMM/master?filepath=.notebooks%2Fdemo.ipynb)
 
+## Roadmap
+* [TODO] 使用预先 `math.log` 的处理方式，加速运行速度
+* [TODO] 解决 `math.log` 在偶然情况写下会出现的 `math domain error`
+
 ## Used by
 * [MicroTokenizer: 一个微型中文分词引擎 | A micro tokenizer for Chinese](https://github.com/howl-anderson/MicroTokenizer)
 
