@@ -7,7 +7,7 @@ test_requirements = ['pytest==3.5.1']
 
 setup(
     name='MicroHMM',
-    version='0.3.1',
+    version='0.3.2',
     packages=['MicroHMM'],
     url='https://github.com/howl-anderson/MicroHMM',
     install_requires=requirements,
