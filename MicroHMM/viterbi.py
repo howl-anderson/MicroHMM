@@ -1,12 +1,19 @@
 # -*- coding: utf-8 -*-
-
 import math
 
 import networkx as nx
 
 
+class MockedGraph:
+    def do_nothing(self, *args, **kwargs):
+        pass
+
+    add_node = do_nothing
+    add_edge = do_nothing
+
+
 class Viterbi(object):
-    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e-32):
+    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e-32, store_graph=False):
         self.A = A
         self.B = B
         self.vocabulary = vocabulary
@@ -18,10 +25,10 @@ class Viterbi(object):
 
         # Trk part for robust model
         # TODO: why using a very small number than average_emission_probability can archive better performance?
-        self.very_small_probability = very_small_probability
+        self.very_small_probability = math.log(very_small_probability)
 
         # create networkx graph
-        self.G = nx.Graph()
+        self.G = nx.Graph() if store_graph else MockedGraph()
 
     def _do_predict(self, word_list):
         N = len(word_list)
@@ -44,13 +51,9 @@ class Viterbi(object):
             # path_probability = transition_probability * state_observation_likelihood
 
             # using log(probability) as probability to prevent number to be too small
-            transition_probability = math.log(
-                self.A[self.start_state].get(state, self.very_small_probability)
-            )
+            transition_probability = self.A[self.start_state].get(state, self.very_small_probability)
 
-            state_observation_likelihood = math.log(
-                self.B[state].get(word, self.very_small_probability)
-            )
+            state_observation_likelihood = self.B[state].get(word, self.very_small_probability)
 
             path_probability = transition_probability + state_observation_likelihood
 
@@ -88,13 +91,9 @@ class Viterbi(object):
                     # path_probability = previous_path_probability * transition_probability * state_observation_likelihood
 
                     # using log(probability) as probability to prevent number to be too small
-                    transition_probability = math.log(
-                        self.A[i].get(state, self.very_small_probability)
-                    )
+                    transition_probability = self.A[i].get(state, self.very_small_probability)
 
-                    state_observation_likelihood = math.log(
-                        self.B[state].get(word, self.very_small_probability)
-                    )
+                    state_observation_likelihood = self.B[state].get(word, self.very_small_probability)
 
                     path_probability = previous_path_probability + transition_probability + state_observation_likelihood
 
@@ -138,9 +137,7 @@ class Viterbi(object):
             # path_probability = previous_path_probability * transition_probability
 
             # using log(probability) as probability to prevent number to be too small
-            transition_probability = math.log(
-                self.A[i].get(self.end_state, self.very_small_probability)
-            )
+            transition_probability = self.A[i].get(self.end_state, self.very_small_probability)
 
             path_probability = previous_path_probability + transition_probability
 
@@ -198,6 +195,9 @@ class Viterbi(object):
         return list(reversed(reverse_state_sequence))
 
     def write_graphml(self, graphml_file):
+        if isinstance(self.G, MockedGraph):
+            raise ValueError("store_graph is False when init Viterbi, so there no graph")
+
         nx.write_graphml(
             self.G,
             graphml_file,
