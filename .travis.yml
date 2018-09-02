@@ -22,10 +22,11 @@ script: tox
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
-  user: howl-anderson
+  user: howlanderson
   password:
-    secure: PLEASE_REPLACE_ME
+    secure: "ebWDHrEKmomPBC6UduMdZxAXbhe1zSl4vmlQ9xrIpSKbbChb/HQuUVI9/gAQOQnMUvybZs8Cw0RSeYUX45bWBlRby8xNHnZsv+27Wl+346cOtR9RcjSfXo3ryAwJ1whd+xD5HrvWr3Cift3cexYn/vq8JwPQsFlLcQ3j8RVjOP2jD5+yfr3dQt0V0B1NEkGWJv/Q//dNN6GzPX31t2IZnk5LuK9wnX+YtgKL4ea/NUuWUFoXzLKCJnkRqxOnXtrMdXoYI8blMdE9w3uCmJloPRX9rWYpI5qizHtkMeCWcimrGbl8dK64AcYV08qhDtimPfaS8aMAspiLal6FM8kcUKkMH286qrrjfiIvvhm3i7Pjypob8d4s/D0PMfkCSda649GKTeF4P3xZaUt7geBRAc8Gd0Zshs+ov5BjA7jntW1yPN/2Vm1/yfTCvJQQfUWMhU1fd8HGVU7KyZJAhk6SRvl2yBcLvMUhtabV1o++tL7f9Xcgy4N7oWx0ksPpTknNrBYxAp87aTmSQCg3yhNWXV/VN6ImA9ppGxjRmIz9qgZnHvbx92Llhe7e6F10vbdq7o1yL26pCBu+TPC1hP6GUSYctMq+sJ9n19cIqLeZoHGl9aC2JDw9pw6mxjA9nCq4PFtKCJjLfg1MkXPh5YPTkiw6N6CTV65SfTIqvFcx/dQ="
   on:
     tags: true
+    branch: master
     repo: howl-anderson/MicroHMM
     python: 3.6
