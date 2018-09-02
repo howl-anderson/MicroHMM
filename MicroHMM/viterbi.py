@@ -4,8 +4,16 @@ import math
 import networkx as nx
 
 
+class MockedGraph:
+    def do_nothing(self, *args, **kwargs):
+        pass
+
+    add_node = do_nothing
+    add_edge = do_nothing
+
+
 class Viterbi(object):
-    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e-32):
+    def __init__(self, A, B, vocabulary, start_state='<start>', end_state='<end>', very_small_probability=1e-32, store_graph=False):
         self.A = A
         self.B = B
         self.vocabulary = vocabulary
@@ -20,7 +28,7 @@ class Viterbi(object):
         self.very_small_probability = math.log(very_small_probability)
 
         # create networkx graph
-        self.G = nx.Graph()
+        self.G = nx.Graph() if store_graph else MockedGraph()
 
     def _do_predict(self, word_list):
         N = len(word_list)
@@ -187,6 +195,9 @@ class Viterbi(object):
         return list(reversed(reverse_state_sequence))
 
     def write_graphml(self, graphml_file):
+        if isinstance(self.G, MockedGraph):
+            raise ValueError("store_graph is False when init Viterbi, so there no graph")
+
         nx.write_graphml(
             self.G,
             graphml_file,
