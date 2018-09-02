@@ -1,30 +1,18 @@
-# Config file for automatic testing at travis-ci.org
-
 language: python
 python:
-  - 3.6
-  - 3.5
-  - 2.7
-
+- 3.6
+- 3.5
+- 2.7
 os:
-  - linux
-
-# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
+- linux
 install: pip install -U tox-travis
-
-# Command to run tests, e.g. python setup.py test
 script: tox
-
-# Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
-# following command to finish PyPI deployment setup:
-# $ travis encrypt --add deploy.password
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
   user: howlanderson
   password:
-    secure: "bU97bhZ9ytbUlF+Sf72TwzJW4NOG8IaEN+HexJXV0cZ1lwbpKY5QQx8tiOZWmBBkmpwe2cqSjTQPKlrXhGlz8X4cvyHYM3ytut5qHdKsi3T1yr2Bq1wBMDjO7D1fotHCC6yyaovZ23rnvhqv2FteP8QnsPdhySej+RBbuxtQefJ5DjgcJ21vl8wI3oqpTv2L//vOpCNxJMj67BtHQ4fBs8zJ9XnUWUyKYWLHxZX49I4CTeYtgx+HdLGzWXrmOeXj0d0pT2PghkJAbOqrTw0R4bqXv37ikN9sw+97p8SJ+THbz+b6Yt0hkPyfJ61eQMoJxZPr1k1N7gasQrsv1fwRQz6UMUxATlxav5pCue6f8jy/CabJgUWKM9Hdqrf9jzK6gIHN8+fGmZ2lzxZET0qIsVeIrJi9ZmMgRYsTxnmmzZWTO4XwbojE9AwUBtb8fi5/+bgFFfnP6s1wUByR3RiVoZ8h5uBu0Vxs+iP2Lymwn9t1mGhER6BiGJIXhICtuuqluXuBeS5/S9oni369Uuyvw6uWQo4TW19Bz3e11qIw5VNTHRn50cgXcX9Uw9BtZ0pNu0g+XD2Pt2UpkjdwBIR+aoN9b+772TCdFtBwXdbUov6rpbtKKk0jmQ7vHhbWhdDkidaKyCgnqpSt7wE/Y6H85vUyJUX1CPqY0tnIZhrQyUI="
+    secure: fyWAw5SGYVpKQH3i1kWg/63s2vd+f3ximaLJVC/YSGuM7sHzBSSdppChudi9gvTkAw1Y/AJlt6K4SIFdrSZajhi5sdSOeR7+VEKSHbunSqCR6hsENJBmynruZ52fim9nXlHj9ULABVdB9JEvVhCW2wJLbS2Kff0j7acyPxSZuCDZ3AbwxC4Gjt/961cLftJxkH1VCO7bcJ+J30/qswMLRpU2Qn/Fh1oXbMRNnREGu7Bcl257g/ELmwgv8Ml1TqKP/IVcMMiBfBPJGv9YTheMm0NZeTeCIp7uGoWdbEkSv9oER3LcmMyEu4EtAHfTwCvfwPQSQgIj5I0bYzMFSmaTBYxmOLKjs4fGAYegIC9qtah0lAbnoOIqrMKPKsiuXpYoKtadFbCCH/i8q2xdTsxozDUFmqiMsW7wixeBuXLTQnAbQAp1tOO8soRu6VHiye6t3dN5NOOd7vI6EilEUUtKtJ0XI0r/bw1xTJmKvlDavR2r4ITMFgMuuLu1e05nLdkGW1sRUEG5JeXlF89fMBE4eSPCqjlQpkkshlvplZYh93njP4MCDKNrAv26hUfWkM6VLrFk6unqYKwY5m9Cwx/AI9sBMScwzlls5rNHK5mVN2oXK1f00G06ZFYkbysTcD+YWsL6EGK9KHoFRj5X/J6L8m35DozArQpskd8NSZGXFMY=
   on:
     tags: true
     branch: master
