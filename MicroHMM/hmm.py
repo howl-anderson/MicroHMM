@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import math
 import pickle
 import pathlib
+from typing import List, Union, Tuple
 
 from MicroHMM.viterbi import Viterbi
 
@@ -23,6 +25,8 @@ class HMMModel(object):
         self.state_observation_pair = {}  # count of pair state and emission observation
 
     def train_one_line(self, list_of_word_tag_pair):
+        # type(List[Union[List[str, str], Tuple[str, str]]) -> None
+
         """
         train model from one line data
         :param list_of_word_tag_pair: list of tuple (word, tag)
@@ -89,18 +93,22 @@ class HMMModel(object):
                 if previous_state not in self.A:
                     self.A[previous_state] = {}
 
-                self.A[previous_state][state] = bigram_probability
+                self.A[previous_state][state] = math.log(bigram_probability)
 
             # compute emission probability
             # NOTE: using dict.get() to prevent start state have on emission will cause exeception
             emission_local_storage = self.state_observation_pair.get(previous_state, {})
             for word, word_count in emission_local_storage.items():
+                emmit_probability = word_count / previous_state_count
+
                 if previous_state not in self.B:
                     self.B[previous_state] = {}
 
-                self.B[previous_state][word] = word_count / previous_state_count
+                self.B[previous_state][word] = math.log(emmit_probability)
 
     def predict(self, word_list, output_graphml_file=None):
+        # type: (List[str], Union[str, None]) -> List[Tuple[str, str]]
+
         if not self.A:  # using self.A as an training-flag indicate if already trained.
             self.do_train()
 

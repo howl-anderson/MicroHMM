@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import math
 
 import networkx as nx
@@ -18,7 +17,7 @@ class Viterbi(object):
 
         # Trk part for robust model
         # TODO: why using a very small number than average_emission_probability can archive better performance?
-        self.very_small_probability = very_small_probability
+        self.very_small_probability = math.log(very_small_probability)
 
         # create networkx graph
         self.G = nx.Graph()
@@ -44,13 +43,9 @@ class Viterbi(object):
             # path_probability = transition_probability * state_observation_likelihood
 
             # using log(probability) as probability to prevent number to be too small
-            transition_probability = math.log(
-                self.A[self.start_state].get(state, self.very_small_probability)
-            )
+            transition_probability = self.A[self.start_state].get(state, self.very_small_probability)
 
-            state_observation_likelihood = math.log(
-                self.B[state].get(word, self.very_small_probability)
-            )
+            state_observation_likelihood = self.B[state].get(word, self.very_small_probability)
 
             path_probability = transition_probability + state_observation_likelihood
 
@@ -88,13 +83,9 @@ class Viterbi(object):
                     # path_probability = previous_path_probability * transition_probability * state_observation_likelihood
 
                     # using log(probability) as probability to prevent number to be too small
-                    transition_probability = math.log(
-                        self.A[i].get(state, self.very_small_probability)
-                    )
+                    transition_probability = self.A[i].get(state, self.very_small_probability)
 
-                    state_observation_likelihood = math.log(
-                        self.B[state].get(word, self.very_small_probability)
-                    )
+                    state_observation_likelihood = self.B[state].get(word, self.very_small_probability)
 
                     path_probability = previous_path_probability + transition_probability + state_observation_likelihood
 
@@ -138,9 +129,7 @@ class Viterbi(object):
             # path_probability = previous_path_probability * transition_probability
 
             # using log(probability) as probability to prevent number to be too small
-            transition_probability = math.log(
-                self.A[i].get(self.end_state, self.very_small_probability)
-            )
+            transition_probability = self.A[i].get(self.end_state, self.very_small_probability)
 
             path_probability = previous_path_probability + transition_probability
 
