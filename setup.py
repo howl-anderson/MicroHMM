@@ -1,9 +1,9 @@
 from setuptools import setup
 
-requirements = ['networkx==2.1', 'pathlib;python_version<"3.4"',
+requirements = ['networkx', 'pathlib;python_version<"3.4"',
                 'typing;python_version<"3.5"'
                 ]
-test_requirements = ['pytest==3.5.1']
+test_requirements = ['pytest']
 
 setup(
     name='MicroHMM',
