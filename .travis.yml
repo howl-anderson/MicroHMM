@@ -7,14 +7,14 @@ os:
 - linux
 install: pip install -U tox-travis
 script: tox
-deploy:
-  provider: pypi
-  distributions: sdist bdist_wheel
-  user: howlanderson
-  password:
-    secure: fyWAw5SGYVpKQH3i1kWg/63s2vd+f3ximaLJVC/YSGuM7sHzBSSdppChudi9gvTkAw1Y/AJlt6K4SIFdrSZajhi5sdSOeR7+VEKSHbunSqCR6hsENJBmynruZ52fim9nXlHj9ULABVdB9JEvVhCW2wJLbS2Kff0j7acyPxSZuCDZ3AbwxC4Gjt/961cLftJxkH1VCO7bcJ+J30/qswMLRpU2Qn/Fh1oXbMRNnREGu7Bcl257g/ELmwgv8Ml1TqKP/IVcMMiBfBPJGv9YTheMm0NZeTeCIp7uGoWdbEkSv9oER3LcmMyEu4EtAHfTwCvfwPQSQgIj5I0bYzMFSmaTBYxmOLKjs4fGAYegIC9qtah0lAbnoOIqrMKPKsiuXpYoKtadFbCCH/i8q2xdTsxozDUFmqiMsW7wixeBuXLTQnAbQAp1tOO8soRu6VHiye6t3dN5NOOd7vI6EilEUUtKtJ0XI0r/bw1xTJmKvlDavR2r4ITMFgMuuLu1e05nLdkGW1sRUEG5JeXlF89fMBE4eSPCqjlQpkkshlvplZYh93njP4MCDKNrAv26hUfWkM6VLrFk6unqYKwY5m9Cwx/AI9sBMScwzlls5rNHK5mVN2oXK1f00G06ZFYkbysTcD+YWsL6EGK9KHoFRj5X/J6L8m35DozArQpskd8NSZGXFMY=
-  on:
-    tags: true
-    branch: master
-    repo: howl-anderson/MicroHMM
-    python: 3.6
+# deploy:
+#   provider: pypi
+#   distributions: sdist bdist_wheel
+#   user: howlanderson
+#   password:
+#     secure: fyWAw5SGYVpKQH3i1kWg/63s2vd+f3ximaLJVC/YSGuM7sHzBSSdppChudi9gvTkAw1Y/AJlt6K4SIFdrSZajhi5sdSOeR7+VEKSHbunSqCR6hsENJBmynruZ52fim9nXlHj9ULABVdB9JEvVhCW2wJLbS2Kff0j7acyPxSZuCDZ3AbwxC4Gjt/961cLftJxkH1VCO7bcJ+J30/qswMLRpU2Qn/Fh1oXbMRNnREGu7Bcl257g/ELmwgv8Ml1TqKP/IVcMMiBfBPJGv9YTheMm0NZeTeCIp7uGoWdbEkSv9oER3LcmMyEu4EtAHfTwCvfwPQSQgIj5I0bYzMFSmaTBYxmOLKjs4fGAYegIC9qtah0lAbnoOIqrMKPKsiuXpYoKtadFbCCH/i8q2xdTsxozDUFmqiMsW7wixeBuXLTQnAbQAp1tOO8soRu6VHiye6t3dN5NOOd7vI6EilEUUtKtJ0XI0r/bw1xTJmKvlDavR2r4ITMFgMuuLu1e05nLdkGW1sRUEG5JeXlF89fMBE4eSPCqjlQpkkshlvplZYh93njP4MCDKNrAv26hUfWkM6VLrFk6unqYKwY5m9Cwx/AI9sBMScwzlls5rNHK5mVN2oXK1f00G06ZFYkbysTcD+YWsL6EGK9KHoFRj5X/J6L8m35DozArQpskd8NSZGXFMY=
+#   on:
+#     tags: true
+#     branch: master
+#     repo: howl-anderson/MicroHMM
+#     python: 3.6
